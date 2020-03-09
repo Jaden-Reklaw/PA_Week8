@@ -1,0 +1,10 @@
+Week 7 Live Solve Steps
+1.) File Setup (HTML, CSS, JS)
+2.) Input form
+3.) Employee Table
+4.) Take Form input and save employee data
+	4.1) Clear input fields
+5.) Output Employee data to the DOM
+	5.1.) Calculate Total Monthly Cost and Output to DOM
+6.) Delete Button - remove employee from the DOM
+	6.1) Update Monthly Cost
