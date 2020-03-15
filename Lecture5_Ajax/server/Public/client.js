@@ -6,6 +6,7 @@ function onReady() {
 	//GET will add things and post will send to server
 	getGamesFromServer();
 	getBooksFromServer();
+	$('#btn-add').on('click', addGame);
 }
 
 //Use GET method and a promise to the browser
@@ -42,6 +43,7 @@ function getBooksFromServer(){
 
 //Append information to the DOM for games
 function appendGamesToDOM(games) {
+	$('#games').empty();
 	for(let game of games) {
 		$('#games').append(`<p>${game.name} has a rating of ${game.rating}</p>`)
 	}
@@ -52,6 +54,33 @@ function appendBooksToDOM(books) {
 	for(let book of books) {
 		$('#books').append(`<p>${book}</p>`)
 	}
+}
+
+//Get input values and post to server
+function addGame(event) {
+	event.preventDefault();
+	console.log('in addGame');
+	let name = $('#in-name').val();
+	let rating = $('#in-rating').val();
+	console.log('name and rating is:',name, rating);
+
+	let newGame = {name,rating};
+	console.log(newGame);
+
+	//Send info to server
+	$.ajax({
+		method: 'POST',
+		url: '/games',
+		data: newGame
+	}).then(function(response) {
+		console.log('Got an response', response);
+		getGamesFromServer();
+	}).catch(function(error) {
+		console.log('Got an error', error);
+	})
+
+	$('#in-name').val('');
+	$('#in-rating').val('');
 }
 
 
